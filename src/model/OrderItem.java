@@ -27,12 +27,12 @@ public class OrderItem implements Taxable {
 		return quantity;
 	}
 
-	public double getItemTotal() {
-		return 0;
+	public double getItemTotal() {		
+		return getProduct().getRetailPrice() * this.quantity;
 	}
 	
 	public double getUnitPrice() {
-		return 0;
+		return getProduct().getRetailPrice();
 	}
 
 	@Override

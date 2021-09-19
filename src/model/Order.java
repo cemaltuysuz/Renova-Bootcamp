@@ -17,7 +17,7 @@ public class Order {
 
 	public Order(Customer customer, int id, ArrayList<OrderItem> item, Date orderDate, double orderTotal) {
 		super();
-		this.items = new ArrayList<OrderItem>();
+		this.items = item;
 		this.customer = customer;
 		this.id = id;
 		this.orderDate = orderDate;
@@ -48,6 +48,14 @@ public class Order {
 	public double getOrderTotal() {
 		return orderTotal;
 	}
+
+	@Override
+	public String toString() {
+		return "Order [customer=" + customer + ", id=" + id + ", items=" + items + ", orderDate=" + orderDate
+				+ ", orderTotal=" + orderTotal + "]";
+	}
+	
+	
 	
 	
 
