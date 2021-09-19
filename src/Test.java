@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Company;
@@ -5,7 +6,7 @@ import model.Individual;
 import model.Product;
 import repo.CustomerRepository;
 import repo.ProductRepository;
-
+import model.OrderItem;
 public class Test {
 	
 	static Scanner input;
@@ -39,7 +40,7 @@ public class Test {
             // Gelen cevabı kontrol ediyorum.
             switch (mainMenuAnswer) {
                 case 1:
-                	System.out.println("Sipariş ekle");
+                	insertNewOrder();
                     break;
                 case 2:
                 	printProducts(); // ürünleri yazdıran method
@@ -112,6 +113,45 @@ public class Test {
         for (Product p : pRepository.getProductList()) {
             System.out.println("["+p.getId()+"]"+" "+p.getName());
         }
+    }
+    
+    static void insertNewOrder() {
+    	/**
+    	 * Bu kısımda bir döngü yaratıyorum. Bunun sebebi kullanıcı 
+    	 * bir ürün yerine birden fazla ürün seçmek isteyebilir.
+    	 * */
+    	
+    	
+    	/**
+    	 * Her döngü sonunda seçilen ürünleri OrderItem haline tanımladığım bu listenin içerisine göndereceğim.
+    	 * Sonrasında bu listeyi bir adet order nesnesi oluşturmak için kullanacağım.
+    	 * */
+    	ArrayList<OrderItem> items = new ArrayList<OrderItem>(); 
+    	boolean productLoop = true; // Döngü kontrolü
+    	int line = 1; // her döndüğünde line arttırırız.
+    	while(productLoop) {
+    		System.out.print("Siparişini girmek istediğiniz ürünün kodunu giriniz : (Ayrılmak için [0])");
+        	
+        	printProducts(); // Ürün listesini yazdırdım.
+        	int productAnswer = input.nextInt(); // Ürünün index numarasını aldım. Index numarasına göre ekleme yapacağım.
+    	
+        	System.out.println("Bu üründen kaç adet gireceksiniz ?");
+        	int productCount = input.nextInt();
+        	
+        	// OrderItem nesnesini oluşturdum.
+        	items.add(new OrderItem(
+        			line,
+        			pRepository.getInstance().getProductList().get(productAnswer),
+        			productCount
+        			));
+    	
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
     }
     
     
