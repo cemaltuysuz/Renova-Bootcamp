@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import model.Hardware;
 import model.Manual;
 import model.Order;
+import model.OrderItem;
 import model.Product;
 import model.Software;
 import repo.OrderRepository;
@@ -21,7 +22,7 @@ public class OrderViewModel {
 		
 		List<Order> myOrderList = oRepository.getOrderList(); // Get Order List 
 		
-		String orders[][] = new String[myOrderList.size()][5]; // Create new double array for table
+		String orders[][] = new String[myOrderList.size()][7]; // Create new double array for table
 		
 		/**
 		 * Fill the array with product values
@@ -29,15 +30,22 @@ public class OrderViewModel {
 		
 		int index = 0;
 		for(Order o :myOrderList) {
-			orders[index][0] = String.valueOf(o.getId());
+			// current product
+			Product p = o.getItems().get(0).getProduct();
+			// current order item
+			OrderItem oI = o.getItems().get(0);
+			// Set array
+			orders[index][0] = p.getName();
 			orders[index][1] = o.getCustomer().getName();
 			orders[index][2] = o.getOrderDate().toString();
 			orders[index][3] = String.valueOf(o.getOrderTotal());
-			orders[index][4] = o.getItems().toString();
+			orders[index][4] = String.valueOf(oI.getUnitPrice()); 
+			orders[index][5] = String.valueOf(oI.getQuantity());
+			orders[index][6] = String.valueOf(oI.getTax());
 			index++;
 		}
 		 // Create new array for order field's titles.
-		String[]title = {"Code","Name","Date","Order Total","Items"};
+		String[]title = {"Product","Customer","Date","Order Total","Unit Price","Quantity","Tax"};
 		
 		JTable orderTable = new JTable(orders,title); // Create JTable
 		orderTable.setBounds(30,40,200,300);

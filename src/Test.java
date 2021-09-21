@@ -113,9 +113,9 @@ public class Test {
         jfm.getContentPane().add(inputCustomerCode);
         
         // Insert Order Button Settings
-        JButton btnNewButton = new JButton("New Order");
-        btnNewButton.setBounds(231, 376, 117, 29);
-        jfm.getContentPane().add(btnNewButton);
+        JButton insertNewOrder = new JButton("New Order");
+        insertNewOrder.setBounds(231, 376, 117, 29);
+        jfm.getContentPane().add(insertNewOrder);
         
         
         // ProductList button set OnClick Listener
@@ -168,10 +168,54 @@ public class Test {
 					JTable orderTable = oViewModel.generateOrderWindow(); // getTable
 					JScrollPane sc = new JScrollPane(orderTable); // Scroll pane for show titles
 					orderJF.getContentPane().add(sc); // insert content pane
-										
 					orderJF.setVisible(true); // visibility
 
 			}
+        });
+        
+        // Insert new order button
+        
+        insertNewOrder.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 double orderTotal = 0L;
+				 ArrayList<OrderItem> items = new ArrayList<OrderItem>(); 
+				 int line = 1; 
+				
+				 int productCode = Integer.parseInt(inputProductCode.getText());
+				 int productCount = Integer.parseInt(inputProductCount.getText());
+				 int customerCode = Integer.parseInt(inputCustomerCode.getText());
+				 
+				 
+			     
+			     
+			     orderTotal += pRepository.getProductList().get(productCode).getRetailPrice() * productCount;
+			     
+			     items.add(new OrderItem(
+		        			line,
+		        			pRepository.getProductList().get(productCode),
+		        			productCount
+		        			));
+			     
+			     Customer customer = cRepository.getCustomerList().get(customerCode);
+			     
+			     Date date = new Date(); // date sınıfım
+		        	
+		        	// order nesnesi
+		        	Order order = new Order(
+		        			customer, 
+		        			oRepository.getOrderList().size(), 
+		        			items, 
+		        			date, 
+		        			orderTotal 
+		        			);
+		        	
+		        	oRepository.insertNewOrder(order);
+				 
+				
+			}
+        	
         });
         
         
@@ -265,7 +309,7 @@ public class Test {
   * Bu method ile müşteri listesini yazdırıyorum.
   * 
   * */
-    
+    /*
     static int printCustomers(){
         brace();
         System.out.println("[1] Bireysel Müşteri \n[2] Kurumsal Müşteri"); // Hangi tipte müşteriler ?
@@ -289,15 +333,19 @@ public class Test {
             System.out.println("Geçersiz işlem.");
         }
         return customerType;
-    }
+    } */
+	
     
  // Bu method ile fake repository üzerinden gelen ürünleri listeliyorum.
+	
+	/*
     static void printProducts(){
     	brace();
         for (Product p : pRepository.getProductList()) {
             System.out.println("["+p.getId()+"]"+" "+p.getName());
         }
     }
+    */
     
     // Bu method ile yeni bir sipariş ekliyorum.
     static void insertNewOrder() {
@@ -367,7 +415,7 @@ public class Test {
         	// Bireysel Müşteri
         	try {
         		if(customerType == 1) {
-            		selectedCustomer = cRepository.getIndividualCustomerList().get(customerIndex-1);
+            		
             	}
             	else if (customerType == 2) {
             		selectedCustomer = cRepository.getCorporateCustomerList().get(customerIndex-1);
