@@ -19,18 +19,6 @@ public class Test {
 	// @author Cemal tüysüz
 	// @date 10.09.2021
 	
-	/**
-	 * 
-	 * Not :
-	 * Projeyi geliştirmek için zorunlu nedenlerden ötürü fazla vaktim yoktu, task üzerinde
-	 * belirtilen görevlerden kalıtım hiyerarşisi ve amacına uygun sipariş girme kısımlarını tamamlayabildim.
-	 * Her sınıftan bir nesne ne yazık ki oluşturamadım. Projenin teslim saatini daha geçirmemek için.
-	 * Sonrasında projeyi tekrardan güncelleyeceğim.
-	 * 
-	 * Not 2 : Normalde katmanlara ayıracaktım fazla düşünmeye fırsatım olmadığı için ne yazik ki sadece 
-	 * repository katmanını oluşturabildim.
-	 * */
-	
 	static Scanner input;
     static CustomerRepository cRepository;
     static ProductRepository pRepository;
@@ -59,6 +47,8 @@ public class Test {
              * [1] Sipariş ekle
              * [2] Ürün Listesi
              * [3] Müşteri Listesi
+             * [4] Sipariş Listesi
+             * [5] Çıkış
              * */
             int mainMenuAnswer = showMainMenu();
 
@@ -88,6 +78,8 @@ public class Test {
                     	}
                     }
                     break;
+                case 5:
+                	mainLoop = false;
                 default:
                     System.out.println("Hatalı seçim.");
                     break;

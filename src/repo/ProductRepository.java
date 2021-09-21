@@ -1,7 +1,10 @@
 package repo;
 import java.util.*;
 
+import model.Hardware;
+import model.Manual;
 import model.Product;
+import model.Software;
 /**
  * Bu sınıf fake bir repository olup rastgele eklenmiş ürünleri sağlıyor.
  * Singleton yapıda oluşturuldu. Herhangi bir Threading işlemi kendi içinde barındırmadığı için @volatile gibi anahtar
@@ -32,7 +35,7 @@ public class ProductRepository {
 
     public List<Product> getProductList(){
         if (productList.isEmpty()){
-            // Ürün 1
+            // Ürün 1 (Product tipinde)
             productList.add(
                     new Product(
                             "Aracın tümseklerden ve düz olmayan yollardan daha rahat geçebilmesini sağlayan sistem.",
@@ -40,21 +43,33 @@ public class ProductRepository {
                             "Süspansiyon",
                             100.50)
             );
-            // Ürün 2
+            // Ürün 2 (Hardware)
             productList.add(
-                    new Product(
+                    new Hardware(
                             "Sürüş deneyimi ve konforu açısından büyük öneme sahip olan lastikler.",
                             2,
                             "Lastik",
-                            130.20)
+                            130.20,
+                            2)
             );
-            // Ürün 3
+            // Ürün 3 (Software)
             productList.add(
-                    new Product(
-                            "Uzun ömürlü ve sizi yolda bırakmayacak aküler.",
+                    new Software(
+                            "Güvenilir fren sistemleri.",
                             3,
-                            "Akü",
-                            120.60)
+                            "Fren",
+                            120.60,
+                            "546372537")
+            );
+            
+         // Ürün 4 (Manual)
+            productList.add(
+                    new Manual(
+                            "Konforlu araba koltukları.",
+                            4,
+                            "Koltuk",
+                            120.60,
+                            "Apple")
             );
         }
         return productList;
