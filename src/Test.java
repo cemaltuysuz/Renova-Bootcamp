@@ -62,6 +62,7 @@ public class Test {
         jfm.getContentPane().add(customerList); // Customer list button add Content pane
         jfm.getContentPane().add(orderList); // Order list button add Content pane
         
+        // ProductList button set OnClick Listener
         productList.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -75,7 +76,22 @@ public class Test {
 			}
         });
         
+        // CustomerListButton set OnClick Listener
         customerList.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// Generate product window
+					JFrame customerWindow = pViewModel.generateProductWindow(); 
+					customerWindow.setVisible(true); // visibility
+				}catch(Exception e1) {
+					// TODO ()
+				}
+			}
+        });
+        
+     // OrderListButton set OnClick Listener
+        orderList.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {

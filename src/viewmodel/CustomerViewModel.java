@@ -30,7 +30,7 @@ public class CustomerViewModel {
 		String customers[][] = new String[myCustomerList.size()][7]; // Create new double array for table
 		
 		/**
-		 * Fill the array with product values
+		 * Fill the array with customer values
 		 * */
 		
 		int index = 0;
@@ -38,13 +38,13 @@ public class CustomerViewModel {
 			customers[index][1] = c.getName();
 			customers[index][2] = c.getPhone();
 			customers[index][3] = c.getAddress();
-			// If this product is hardware, set WarrantyPeriod and tax
+			// If this product is company, set contact and discount
 			if(c instanceof Company) { 
 				customers[index][0] = "Company";
 				customers[index][4] = ((Company)c).getContact();
 				customers[index][5] = String.valueOf(((Company)c).getDiscount());
 			}
-			// If this product is Manual, set Publisher
+			// If this product is Individual, set licNumber
 			else if(c instanceof Individual) {
 				customers[index][6] = ((Individual)c).getLicNumber();
 			}
@@ -54,7 +54,8 @@ public class CustomerViewModel {
 			
 			index++;
 		}
-		 // Create new array for product field's titles.
+		
+		 // Create new array for customer field's titles.
 		String[]title = {"Type","Name","Phone","Adress","Contact","Discount","Lic Num"};
 		
 		JTable customerTable = new JTable(customers,title); // Create JTable
