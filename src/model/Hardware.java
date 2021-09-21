@@ -15,7 +15,7 @@ public class Hardware extends Product implements Taxable {
 
     @Override
     public double getTax() {
-        return 20;
+        return this.getRetailPrice() * 0.7;
     }
 
 }
