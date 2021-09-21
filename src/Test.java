@@ -1,3 +1,4 @@
+import java.awt.FlowLayout;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -5,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import model.Company;
@@ -43,8 +45,22 @@ public class Test {
         JFrame jfm = new JFrame("Renova BootCamp");
         jfm.setSize(700, 600); // büyüklüğü
         jfm.setLocation(300, 150); // ekran konumu
+        
+        // layout
+        jfm.getContentPane().setLayout(new FlowLayout());
+        JButton productList  = new JButton("Product List");
+        JButton customerList = new JButton("Customer List");
+        JButton OrderList    = new JButton("Order List");
+        JButton newOrder  	 = new JButton("New Order");
+        
+        
+        
         jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // kapanılabilirlik
         jfm.setVisible(true); // görünürlük
+        
+        
+        
+        
         
         /**
     	 * Kullanıcıya yapmasını istediği işlemi seçtirebilmek için menü gösteriyorum.
