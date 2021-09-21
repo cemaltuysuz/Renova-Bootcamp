@@ -15,7 +15,7 @@ This project was created of part Renova Java Bootcamp
 
 ![uml](https://user-images.githubusercontent.com/79871380/134208906-d4a68e40-1e70-4eaf-92fa-f5712fe9a8fc.png)
 
-## Images
+## Images
 
 ### Home
 
@@ -23,7 +23,7 @@ This project was created of part Renova Java Bootcamp
 
 ### Products
 
-![Products](https://user-images.githubusercontent.com/79871380/134209212-22c2e34a-e97a-4e64-aaad-01fea921537f.png)
+![Products](https://user-images.githubusercontent.com/79871380/134209995-bba18951-588b-4faa-b665-746029055022.png)
 
 ### Customers
 
