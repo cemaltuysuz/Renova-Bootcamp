@@ -18,11 +18,7 @@ public class ProductViewModel {
 	
 	
 	
-	public JFrame generateProductWindow() {
-		
-		JFrame productJF = new JFrame("Ürünler"); // Create a new JFrame for products
-		productJF.setSize(700, 300); // Size
-		productJF.setLocation(300, 150); // Location
+	public JTable generateProductWindow() {
 		
 		List<Product> myProductList = pRepository.getProductList(); // Get Product List 
 		
@@ -57,17 +53,14 @@ public class ProductViewModel {
 			
 			index++;
 		}
-		 // Create new array for product field's titles.
+		// Create new array for product field's titles.
 		String[]title = {"Type","Name","Retail Price","Warranty","Publisher","License","Tax"};
 		
 		JTable productTable = new JTable(products,title); // Create JTable
 		productTable.setBounds(30,40,200,300);
 		
-		JScrollPane sc = new JScrollPane(productTable); // Scroll pane for show titles
 		
-		productJF.add(sc); // insert content pane
-		
-		return productJF;
+		return productTable;
 	} 
 
 }

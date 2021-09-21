@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import model.Company;
 import model.Customer;
@@ -25,8 +28,13 @@ import model.Software;
 import repo.CustomerRepository;
 import repo.OrderRepository;
 import repo.ProductRepository;
+import util.ForcedListSelectionModel;
+import viewmodel.CustomerViewModel;
+import viewmodel.OrderViewModel;
 import viewmodel.ProductViewModel;
 import model.OrderItem;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 public class Test {
 	
 	// @author Cemal tüysüz
@@ -36,31 +44,79 @@ public class Test {
     static CustomerRepository cRepository;
     static ProductRepository pRepository;
     static OrderRepository oRepository;
+    
+    private static JTextField inputProductCode;
+    private static JTextField inputProductCount;
+    private static JTextField inputCustomerCode;
 	
 	public static void main (String [] args) {
 		
 		// Scanner
         input = new Scanner(System.in);
         
-        ProductViewModel pViewModel = new ProductViewModel();
+        ProductViewModel pViewModel	 = new ProductViewModel();
+        CustomerViewModel cViewModel = new CustomerViewModel();
+        OrderViewModel oViewModel = new OrderViewModel();
 
         cRepository = CustomerRepository.getInstance(); // Customer Repository
         pRepository = ProductRepository.getInstance(); // Product Repository
         oRepository = OrderRepository.getInstance(); // Order Repository
         
         JFrame jfm = new JFrame("Renova BootCamp"); // Main Window
+        jfm.setResizable(false);
         jfm.setSize(700, 600); 						// Window Size
-        jfm.setLocation(300, 150); 					// Window Location
-        
-        jfm.getContentPane().setLayout(new FlowLayout()); // Layout
+        jfm.setLocation(300, 150);
     
         JButton productList  = new JButton("Product List"); // it's open the Product List's window
+        productList.setBounds(166, 5, 119, 29);
         JButton customerList = new JButton("Customer List"); // it's open the Customer List window
+        customerList.setBounds(290, 5, 132, 29);
         JButton orderList    = new JButton("Order List"); // it's open the Order List window
+        orderList.setBounds(427, 5, 106, 29);
+        jfm.getContentPane().setLayout(null);
         
         jfm.getContentPane().add(productList); // Product list button add Content pane
         jfm.getContentPane().add(customerList); // Customer list button add Content pane
         jfm.getContentPane().add(orderList); // Order list button add Content pane
+        
+        // Product Code JLabel For Information
+        JLabel testLabel = new JLabel("Product Code :");
+        testLabel.setBounds(168, 200, 87, 16);
+        jfm.getContentPane().add(testLabel);
+        
+        // Product code TextField Settings
+        inputProductCode = new JTextField();
+        inputProductCode.setBounds(273, 197, 130, 26);
+        jfm.getContentPane().add(inputProductCode);
+        inputProductCode.setColumns(10);
+        
+        // Product Count JLabel For Information
+        JLabel lblNewLabel = new JLabel("Product Count :");
+        lblNewLabel.setBounds(166, 258, 87, 16);
+        jfm.getContentPane().add(lblNewLabel);
+        
+     // Product Count TextField Settings
+        inputProductCount = new JTextField();
+        inputProductCount.setColumns(10);
+        inputProductCount.setBounds(273, 253, 130, 26);
+        jfm.getContentPane().add(inputProductCount);
+        
+        // Customer Code JLabel For Information
+        JLabel lblNewLabel_1 = new JLabel("Customer Code:");
+        lblNewLabel_1.setBounds(166, 313, 89, 16);
+        jfm.getContentPane().add(lblNewLabel_1);
+        
+     // Customer Code TextField Settings
+        inputCustomerCode = new JTextField();
+        inputCustomerCode.setColumns(10);
+        inputCustomerCode.setBounds(273, 308, 130, 26);
+        jfm.getContentPane().add(inputCustomerCode);
+        
+        // Insert Order Button Settings
+        JButton btnNewButton = new JButton("New Order");
+        btnNewButton.setBounds(231, 376, 117, 29);
+        jfm.getContentPane().add(btnNewButton);
+        
         
         // ProductList button set OnClick Listener
         productList.addActionListener(new ActionListener() {
@@ -68,21 +124,30 @@ public class Test {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					// Generate product window
-					JFrame productsWindow = pViewModel.generateProductWindow(); 
-					productsWindow.setVisible(true); // visibility
+					JFrame productJF = new JFrame("Ürünler"); // Create a new JFrame for products
+					productJF.setSize(700, 300); // Size
+					productJF.setLocation(300, 150); // Location
+					
+					
+					JTable productTable = pViewModel.generateProductWindow(); // getTable
+					JScrollPane sc = new JScrollPane(productTable); // Scroll pane for show titles
+					productJF.getContentPane().add(sc); // insert content pane
+					
+					
+					productJF.setVisible(true); // visibility
 				}catch(Exception e1) {
 					// TODO ()
 				}
 			}
         });
         
-        // CustomerListButton set OnClick Listener
+        // CustomerListButton OnClick Listener
         customerList.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					// Generate product window
-					JFrame customerWindow = pViewModel.generateProductWindow(); 
+					JFrame customerWindow = cViewModel.generateCustomerWindow();
 					customerWindow.setVisible(true); // visibility
 				}catch(Exception e1) {
 					// TODO ()
@@ -90,17 +155,22 @@ public class Test {
 			}
         });
         
-     // OrderListButton set OnClick Listener
+     // OrderListButton OnClick Listener
         orderList.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					// Generate product window
-					JFrame customerWindow = pViewModel.generateProductWindow(); 
-					customerWindow.setVisible(true); // visibility
-				}catch(Exception e1) {
-					// TODO ()
-				}
+					// Generate Order window
+					JFrame orderJF = new JFrame("Orders"); // Create a new JFrame for orders
+					orderJF.setSize(700, 300); // Size
+					orderJF.setLocation(300, 150); // Location
+					
+					
+					JTable orderTable = oViewModel.generateOrderWindow(); // getTable
+					JScrollPane sc = new JScrollPane(orderTable); // Scroll pane for show titles
+					orderJF.getContentPane().add(sc); // insert content pane
+										
+					orderJF.setVisible(true); // visibility
+
 			}
         });
         
@@ -166,7 +236,7 @@ public class Test {
         } 
   */
 		
-	}
+	} /*
 	
 	// Bu methodum ile kullanıcıya ana menüyü gösteriyor ve yapmak istediği işlemi seçtiriyorum.
     // Yaptığı seçimi geri döndürüyorum.
@@ -331,6 +401,5 @@ public class Test {
     
     static void brace(){
         System.out.println("*__*--*__*--*__*--*__*--*__*--*__*--*__*--*");
-    }
-
+    } 
 }

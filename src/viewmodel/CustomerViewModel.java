@@ -46,6 +46,7 @@ public class CustomerViewModel {
 			}
 			// If this product is Individual, set licNumber
 			else if(c instanceof Individual) {
+				customers[index][0] = "Individual";
 				customers[index][6] = ((Individual)c).getLicNumber();
 			}
 			else {
