@@ -68,8 +68,20 @@ public class Test {
 				try {
 					// Generate product window
 					JFrame productsWindow = pViewModel.generateProductWindow(); 
-					// visibility
-					productsWindow.setVisible(true); 
+					productsWindow.setVisible(true); // visibility
+				}catch(Exception e1) {
+					// TODO ()
+				}
+			}
+        });
+        
+        customerList.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// Generate product window
+					JFrame customerWindow = pViewModel.generateProductWindow(); 
+					customerWindow.setVisible(true); // visibility
 				}catch(Exception e1) {
 					// TODO ()
 				}

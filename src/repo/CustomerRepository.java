@@ -2,6 +2,7 @@ package repo;
 import java.util.*;
 
 import model.Company;
+import model.Customer;
 import model.Individual;
 /**
  * Bu sınıf fake bir repository olup rastgele eklenmiş müşterileri sağlıyor.
@@ -11,15 +12,12 @@ import model.Individual;
 
 public class CustomerRepository {
 	
-	 // Kurumsal müşterilerin listesi
-    private final ArrayList<Company> corporateCustomerList;
-    // Bireysel Müşterilerin listesi
-    private final ArrayList<Individual> individualCustomerList;
+	 // Müşteri listesi
+    private final ArrayList<Customer> customerList;
 
     // Yapıcı methodum
     public CustomerRepository() {
-        corporateCustomerList = new ArrayList<Company>();
-        individualCustomerList = new ArrayList<Individual>();
+    	customerList = new ArrayList<Customer>();
     }
 
     // Instance
@@ -35,10 +33,14 @@ public class CustomerRepository {
 
     // Kurumsal müşterilin listesini ImMutable şekilde alabileceğim methodum
     // Liste boş ise fake müşteriler ekler.
-    public List<Company> getCorporateCustomerList() {
-        if (corporateCustomerList.isEmpty()){
-            // Kurumsal Müşteri 1
-            corporateCustomerList.add(
+    
+    public List<Customer> getCustomerList() {
+    	
+        if (customerList.isEmpty()){
+        	
+            // Kurumsal Müşteri 
+        	
+        	customerList.add(
                     new Company(
                             1,
                             "BMW",
@@ -46,60 +48,35 @@ public class CustomerRepository {
                             "Phone 1",
                             "Mail 1",
                             30));
-            // Kurumsal Müşteri 2
-            corporateCustomerList.add(
-                    new Company(
+        	
+            // Bireysel Müşteri 1
+        	customerList.add(
+                    new Individual(
                             2,
-                            "Ford",
+                            "Cemal tuysuz",
+                            "Address 2",
+                            "Phone 2",
+                            "license123"));
+
+            // Kurumsal Müşteri 3
+        	customerList.add(
+                    new Company(
+                            3,
+                            "FORD",
                             "Address 2",
                             "Phone 2",
                             "Mail 2",
                             25));
-
-            // Kurumsal Müşteri 3
-            corporateCustomerList.add(
-                    new Company(
-                            3,
-                            "Fiat",
-                            "Address 3",
-                            "Phone 3",
-                            "Mail 3",
-                            35));
-        }
-        return corporateCustomerList;
-    }
-
-    // Bireysel müşterilin listesini ImMutable şekilde alabileceğim methodum
-    // Liste boş ise fake müşteriler ekler.
-    public List<Individual> getIndividualCustomerList() {
-        if (individualCustomerList.isEmpty()){
-            // Bireysel müşteri 1
-            individualCustomerList.add(
-                    new Individual(
-                            1,
-                            "Cemal TUYSUZ",
-                            "Address 1",
-                            "Phone 1",
-                            "123456789"));
-            // Bireysel Müşteri 2
-            individualCustomerList.add(
+        	
+        	// Bireysel Müşteri 2
+        	customerList.add(
                     new Individual(
                             2,
-                            "Ali PAMUK",
-                            "Address 2",
-                            "Phone 2",
-                            "123456789"));
-
-            // Bireysel Müşteri 3
-            individualCustomerList.add(
-                    new Individual(
-                            1,
-                            "Veli DEMIR",
+                            "Ali veli",
                             "Address 3",
-                            "Phone 3",
-                            "123456789"));
+                            "Phone 4",
+                            "license321"));
         }
-        return individualCustomerList;
+        return customerList;
     }
-
 }
