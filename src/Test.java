@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 import model.Company;
 import model.Customer;
 import model.Individual;
@@ -36,20 +38,30 @@ public class Test {
         // Order Repository
         oRepository = OrderRepository.getInstance();
 
+        // Öncelikle main penceremi oluşturuyorum.
+        
+        JFrame jfm = new JFrame("Renova BootCamp");
+        jfm.setSize(700, 600); // büyüklüğü
+        jfm.setLocation(300, 150); // ekran konumu
+        jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // kapanılabilirlik
+        jfm.setVisible(true); // görünürlük
+        
+        /**
+    	 * Kullanıcıya yapmasını istediği işlemi seçtirebilmek için menü gösteriyorum.
+         * [1] Sipariş ekle
+         * [2] Ürün Listesi
+         * [3] Müşteri Listesi
+         * [4] Sipariş Listesi
+         * [5] Çıkış
+         * */
+        
+  /*   
         // And döngünün kontrolü	
         boolean mainLoop = true;
 
         // Ana döngü
         while (mainLoop){
         	
-        	/**
-        	 * Kullanıcıya yapmasını istediği işlemi seçtirebilmek için menü gösteriyorum.
-             * [1] Sipariş ekle
-             * [2] Ürün Listesi
-             * [3] Müşteri Listesi
-             * [4] Sipariş Listesi
-             * [5] Çıkış
-             * */
             int mainMenuAnswer = showMainMenu();
 
             // Gelen cevabı kontrol ediyorum.
@@ -84,7 +96,8 @@ public class Test {
                     System.out.println("Hatalı seçim.");
                     break;
             }
-        }
+        } 
+  */
 		
 	}
 	
